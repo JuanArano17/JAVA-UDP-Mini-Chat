@@ -13,3 +13,7 @@ La idea es; en primer lugar, brindar información al lector para que pueda conte
 Con lo cual, el objetivo es poder plasmar los conocimientos adquiridos en la asignatura Redes de Datos I para poder comprender y establecer una comunicación, analizando el paso a paso de la misma y así mejorar nuestras habilidades al respecto. Se incluirá el código fuente e imágenes para ilustrar su funcionamiento.
 
 <p/>
+# Realizado por: 
+<p align="justify">
+Juan Pablo Arano, Martín Romano y Prieto Sofía Alejandra
+<p/>
