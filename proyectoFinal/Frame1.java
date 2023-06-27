@@ -1,4 +1,3 @@
-
 package proyectoFinal;
 
 import java.util.Observable;
@@ -72,7 +71,7 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
         String mensaje = "Usuario 1: " + this.txtTextoEnviar.getText() + "\n";
 
         this.txtTexto.append(mensaje);
-
+        
         // Limpiar el campo de texto
         this.txtTextoEnviar.setText("");
 
@@ -80,6 +79,7 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
         Cliente c = new Cliente("192.168.0.46", 5000, mensaje);
         Thread t = new Thread(c);
         t.start();
+
 
     }//GEN-LAST:event_btnEnviarActionPerformed
 
@@ -132,3 +132,4 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
     }
 
 }
+
