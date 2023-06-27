@@ -13,6 +13,9 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
         s.addObserver(this);
         Thread t = new Thread(s);
         t.start();
+
+        //Impide que el historial de mensajes sea editable
+        this.txtTexto.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -25,7 +28,7 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
         txtTextoEnviar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Frame1");
+        setTitle("Mini Chat 1");
 
         txtTexto.setColumns(20);
         txtTexto.setRows(5);
@@ -69,14 +72,15 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
 
-        String mensaje = "1: " + this.txtTextoEnviar.getText() + "\n";
+        String mensaje = "Usuario 1: " + this.txtTextoEnviar.getText() + "\n";
 
         this.txtTexto.append(mensaje);
 
+        //Limpia el campo de texto al enviar el mensaje
         txtTextoEnviar.setText("");
 
         // IP de la otra maquina
-        Cliente c = new Cliente("192.168.1.2", 6000, mensaje);
+        Cliente c = new Cliente("192.168.1.2", 5000, mensaje);
         Thread t = new Thread(c);
         t.start();
 
