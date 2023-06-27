@@ -1,11 +1,8 @@
-
 package proyectoFinal;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,44 +17,21 @@ public class Servidor extends Observable implements Runnable {
 
     @Override
     public void run() {
-
-        ServerSocket servidor = null;
-        Socket sc = null;
-        DataInputStream in;
-
         try {
-            //Creamos el socket del servidor
-            servidor = new ServerSocket(puerto);
-            System.out.println("Servidor iniciado");
+            DatagramSocket socket = new DatagramSocket(puerto);
+            byte[] buf = new byte[256];
 
-            //Siempre estara escuchando peticiones
             while (true) {
-
-                //Espero a que un cliente se conecte
-                sc = servidor.accept();
-
-                System.out.println("Cliente conectado");
-                in = new DataInputStream(sc.getInputStream());
-               
-                //Leo el mensaje que me envia
-                String mensaje = in.readUTF();
-
-                System.out.println(mensaje);
-
-                this.setChanged();
-                this.notifyObservers(mensaje);
-                this.clearChanged();
+                DatagramPacket packet = new DatagramPacket(buf, buf.length);
+                socket.receive(packet);
+                String received = new String(packet.getData(), 0, packet.getLength());
                 
-                //Cierro el socket
-                sc.close();
-                System.out.println("Cliente desconectado");
-
+                this.setChanged();
+                this.notifyObservers(received);
+                this.clearChanged();
             }
-
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
 }
