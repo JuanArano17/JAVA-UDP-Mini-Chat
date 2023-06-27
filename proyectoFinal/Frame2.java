@@ -79,7 +79,7 @@ public class Frame2 extends javax.swing.JFrame implements Observer {
         txtTextoEnviar.setText("");
 
         // IP de la otra maquina
-        Cliente c = new Cliente("192.168.1.2", 5000, mensaje);
+        Cliente c = new Cliente(@ipMaquina1, 5000, mensaje);
         Thread t = new Thread(c);
         t.start();
 
