@@ -75,7 +75,8 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
 
         txtTextoEnviar.setText("");
 
-        Cliente c = new Cliente(6000, mensaje);
+        // IP de la otra maquina
+        Cliente c = new Cliente("192.168.1.2", 6000, mensaje);
         Thread t = new Thread(c);
         t.start();
 

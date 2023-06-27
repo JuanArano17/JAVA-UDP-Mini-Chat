@@ -10,24 +10,24 @@ import java.util.logging.Logger;
 
 public class Cliente implements Runnable {
 
+    private String host;
     private int puerto;
     private String mensaje;
 
-    public Cliente(int puerto, String mensaje) {
+    public Cliente(String host, int puerto, String mensaje) {
+        this.host = host;
         this.puerto = puerto;
         this.mensaje = mensaje;
     }
 
     @Override
     public void run() {
-        //Host del servidor
-        final String HOST = "127.0.0.1";
         //Puerto del servidor
         DataOutputStream out;
 
         try {
             //Creo el socket para conectarme con el cliente
-            Socket sc = new Socket(HOST, puerto);
+            Socket sc = new Socket(this.host, puerto);
 
             out = new DataOutputStream(sc.getOutputStream());
 
