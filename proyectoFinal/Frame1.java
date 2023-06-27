@@ -25,7 +25,7 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
         txtTextoEnviar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Frame1");
+        setTitle("Mini Chat 1");
 
         txtTexto.setColumns(20);
         txtTexto.setRows(5);
@@ -69,16 +69,17 @@ public class Frame1 extends javax.swing.JFrame implements Observer {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
 
-        String mensaje = "1: " + this.txtTextoEnviar.getText() + "\n";
+        String mensaje = "Usuario 1: " + this.txtTextoEnviar.getText() + "\n";
 
         this.txtTexto.append(mensaje);
 
-        txtTextoEnviar.setText("");
+        // Limpiar el campo de texto
+        this.txtTextoEnviar.setText("");
 
-        Cliente c = new Cliente(6000, mensaje);
+        // IP de la otra máquina
+        Cliente c = new Cliente("192.168.0.46", 5000, mensaje);
         Thread t = new Thread(c);
         t.start();
-
 
     }//GEN-LAST:event_btnEnviarActionPerformed
 
